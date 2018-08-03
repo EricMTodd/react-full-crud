@@ -30,7 +30,7 @@ const movieController = require('./controllers/movieController');
 const authController  = require('./controllers/authController');
 
 app.use('/api/v1/movies', movieController);
-app.use('/auth/login', authController);
+app.use('/auth', authController);
 
 app.listen(9000, () => {
   console.log('listening on port 9000');

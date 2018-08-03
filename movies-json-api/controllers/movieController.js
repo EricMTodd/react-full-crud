@@ -27,7 +27,7 @@ const Movie = require('../models/movie');
 
 
 router.post('/', async (req, res) => {
-
+  console.log(req.session, "this is the req.session in the post route");
   try {
     console.log(req.body, ' this is req.body');
     const createdMovie = await Movie.create(req.body);

@@ -30,7 +30,10 @@ class MovieContainer extends Component {
     }
 
     getMovies = async () => {
-        const movies = await fetch("http://localhost:9000/api/v1/movies");
+        const movies = await fetch("http://localhost:9000/api/v1/movies", {
+            credentials: "include",
+            method: "GET"
+        });
         const parsedMovies = movies.json();
         return parsedMovies
     }
@@ -40,6 +43,7 @@ class MovieContainer extends Component {
         try {
             const createMovie = await fetch("http://localhost:9000/api/v1/movies", {
                 method: "post",
+                credentials: "include",
                 body: JSON.stringify(movie),
                 headers: {
                     "Content-Type": "application/json"
@@ -60,6 +64,7 @@ class MovieContainer extends Component {
         console.log("deleteMovie function is being called, this is the id:", id);
         try {
             const deleteMovie = await fetch("http://localhost:9000/api/v1/movies/" + id, {
+                credentials: "include",
                 method: "DELETE"
             });
             const parsedResponse = await deleteMovie.json();
@@ -87,6 +92,7 @@ class MovieContainer extends Component {
         try {
             e.preventDefault();
             const editMovie = await fetch("http://localhost:9000/api/v1/movies/" + this.state.editMovieId ,{
+                credentials: "include",
                 method: "PUT",
                 body: JSON.stringify(this.state.movieToEdit),
                 headers: {
