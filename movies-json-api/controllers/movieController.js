@@ -8,7 +8,7 @@ const Movie = require('../models/movie');
 // Creating the index route
 // index route should show all the fruits
  router.get('/', async (req, res, next) => {
-
+  console.log(req.session, ' this is get all')
      try  {
 
       const allMovies = await Movie.find();
@@ -25,11 +25,9 @@ const Movie = require('../models/movie');
     }
 });
 
-// This is the route that the form is sending
-// its info too
-// aka the create route
+
 router.post('/', async (req, res) => {
-  // contents of the form will be in req.body
+
   try {
     console.log(req.body, ' this is req.body');
     const createdMovie = await Movie.create(req.body);
@@ -48,8 +46,8 @@ router.post('/', async (req, res) => {
 
 
 
-// Show Route
-router.get('/', async (req, res, next) => {
+
+router.get('/:id', async (req, res, next) => {
 
 
      try  {
